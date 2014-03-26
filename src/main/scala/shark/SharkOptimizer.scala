@@ -47,7 +47,7 @@ class SharkOptimizer extends HiveOptimizer with LogHelper {
     while (it.hasNext()) {
       val transformation = it.next()
       transformation match {
-        case _: SimpleFetchOptimizer => {}
+        case _: SimpleFetchOptimizer => {new SharkSimpleFetchOptimizer().transform(pctx)}
         case _: JoinReorder => {}
         case _ => {
           pctx = transformation.transform(pctx)
